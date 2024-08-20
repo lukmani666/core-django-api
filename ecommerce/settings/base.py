@@ -42,8 +42,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'drf_yasg',
+    'django_filters',
     # Custom App
     'authentication',
+    'products',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'authentication.middleware.UserContextMiddleware',
 ]
 
 ROOT_URLCONF = 'ecommerce.urls'
@@ -114,6 +117,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_FILTER_DJANGO_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
     ]
 }
 
@@ -156,7 +162,7 @@ LOGOUT_REDIRECT_URL = "/admin/"
 SWAGGER_SETTINGS = {
     "SECURITY_DEFINITIONS": {
         "Auth Token eg [Bearer Token]": {
-            "type": "api_key",
+            "type": "apiKey",
             "name": "Authorization",
             "in": "header",
         }
