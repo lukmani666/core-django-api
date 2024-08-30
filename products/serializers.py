@@ -8,6 +8,7 @@ class ProductSerializer(serializers.ModelSerializer):
             "id",
             "name",
             "price",
+            "stock",
             "category",
             "description",
             "image",
@@ -21,5 +22,7 @@ class ProductSerializer(serializers.ModelSerializer):
         return value
     
     def create(self, validated_data):
+        user = self.context.get("request").user
+        validated_data["user"] = user
         product = Product.objects.create(**validated_data)
         return product

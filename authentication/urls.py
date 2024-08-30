@@ -5,9 +5,10 @@ from . import views
 app_name = 'auth'
 
 router = DefaultRouter()
-router.register("", views.SignUpUserAPI, basename="sign-up")
+router.register("sign-up", views.SignUpUserAPI, basename="sign-up")
+router.register("auth", views.AuthenticationViewset, basename="auth_views")
 
 urlpatterns = [
-    path("sign-up", include(router.urls)),
+    path("", include(router.urls)),
     path("login", views.LoginUserApi.as_view(), name="login"),
 ]

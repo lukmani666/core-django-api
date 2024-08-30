@@ -15,6 +15,9 @@ from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+SETTINGS_PATH = os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+)
 
 
 # Quick-start development settings - unsuitable for production
@@ -46,6 +49,8 @@ INSTALLED_APPS = [
     # Custom App
     'authentication',
     'products',
+    'order',
+    'notifications',
 ]
 
 MIDDLEWARE = [
@@ -64,7 +69,7 @@ ROOT_URLCONF = 'ecommerce.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(SETTINGS_PATH, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,7 +135,7 @@ AUTH_USER_MODEL = "authentication.User"
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Lagos'
 
 USE_I18N = True
 
