@@ -100,6 +100,7 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 #     }
 # }
 
+
 DATABASES = {
     'default': dj_database_url.config(
         default=config('DATABASE_URL')
